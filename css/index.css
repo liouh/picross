@@ -1,0 +1,230 @@
+html {
+	height: 100%;
+}
+
+body {
+	font-family: Helvetica, Arial, Sans-serif;
+	font-size: 13px;
+	background-color: #fafafa;
+	height: 100%;
+}
+
+table, tr, td {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.container {
+	width: 800px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+.footer {
+	clear: both;
+	width: 800px;
+	margin: 0 auto;
+	border-top: 1px dashed #ccc;
+	padding: 15px 0 20px;
+	text-align: center;
+	color: #999;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.controls {
+	float: left;
+	width: 150px;
+	height: 680px;
+}
+
+.control-group {
+	border-bottom: 2px solid #fff;
+	margin-bottom: 20px;
+	padding: 15px 12px;
+	color: #333;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: inset 0px 1px 3px #999;
+	text-align: center;
+}
+
+.control-group h3 {
+	color: black;
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.control-group .control-section {
+	padding: 3px 0 7px;
+}
+
+.control-group input[type=checkbox] {
+	vertical-align: middle;
+}
+
+.control-group label {
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.control-group span {
+	font-size: 12px;
+}
+
+.custom {
+	margin-top: 15px;
+	border-top: 1px dashed #ccc;
+	padding-top: 15px;
+}
+
+.custom h5 {
+	color: #666;
+	font-size: 11px;
+}
+
+.custom input[type=text] {
+	width: 100px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	padding: 2px;
+	text-align: center;
+}
+
+#new {
+	font-weight: bold;
+	padding: 5px 10px;
+}
+
+#seed {
+	background-color: #efefef;
+}
+
+#progress {
+	font-size: 20px;
+	font-weight: bold;
+	color: #999;
+}
+
+#progress.done {
+	color: #080;
+}
+
+#mistakes {
+	font-size: 20px;
+	font-weight: bold;
+	color: #999;
+}
+
+#mistakes.error {
+	color: #A00;
+}
+
+#puzzle {
+	float: right;
+	width: 600px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#puzzle td:nth-child(5n + 1) {
+	border-right: 1px solid #555;
+}
+
+#puzzle td.cell:nth-child(5n + 1) {
+	border-right: 1px solid #555;
+}
+
+#puzzle tr:nth-child(5n + 1) td {
+	border-bottom: 1px solid #555;
+}
+
+#puzzle tr:nth-child(5n + 2) td {
+	border-top: 1px solid #555;
+}
+
+#puzzle td.key {
+	font-weight: bold;
+	font-family: Monospace;
+}
+
+#puzzle td.key em {
+	color: #ccc;
+	text-decoration: line-through;
+}
+
+#puzzle td.key.top {
+	text-align: center;
+	vertical-align: bottom;
+	padding-bottom: 5px;
+	line-height: 1.3;
+}
+
+#puzzle td.key.left {
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+#puzzle td.cell {
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #A00;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#puzzle td.cell.hoverLight {
+	background-color: #F7F2E0;
+}
+
+#puzzle td.cell.hover {
+	background-color: #F7D358;
+}
+
+#puzzle td.cell.s1 {
+	background-color: #ddd;
+	box-shadow: 0 0 5px 2px #ccc inset;
+}
+
+#puzzle td.cell.s2 {
+	background-color: #81DAF5;
+	box-shadow: 0 0 5px 2px #01A9DB inset;
+}
+
+#puzzle td.cell.hover {
+	box-shadow: 0 0 5px 2px #FF8000 inset;
+}
+
+#puzzle.complete td.cell {
+	background-color: #fff;
+	box-shadow: none;
+}
+
+#puzzle.complete td.cell.s2 {
+	background-color: #333;
+	box-shadow: 3px 3px 5px #666 inset, -3px -3px 5px #000 inset;
+}
