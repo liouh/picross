@@ -1,0 +1,4 @@
+picross
+=======
+
+Picross puzzle generator
