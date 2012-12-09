@@ -3,6 +3,8 @@ Picross
 
 This is a playable [picross puzzle](http://en.wikipedia.org/wiki/Nonogram) generator I wrote in JavaScript
 
+You can access [an online version here](http://liouh.com/picross/)
+
 ### Features
 
 * Adjustable grid dimensions (the code is generic and supports any dimension, but a 30x30 game can take up to 2 hours)
@@ -17,7 +19,7 @@ This is a playable [picross puzzle](http://en.wikipedia.org/wiki/Nonogram) gener
 * Right click : mark cell as inactive
 * Right click & drag : mark multiple cells as inactive
 
-### Library dependencies:
+### Library Dependencies
 
 * jQuery
 * Backbone.js / Underscore.js
