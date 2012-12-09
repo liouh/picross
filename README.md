@@ -10,7 +10,7 @@ You can access [an online version here](http://liouh.com/picross/)
 * Adjustable grid dimensions (the code is generic and supports any dimension, but a 30x30 game can take up to 2 hours)
 * Custom game seeds (allows multiple computers to play using the same starting puzzle configuration)
 * Progress indicator
-* Mistake counter
+* Mistakes counter
 
 ### Instructions
 
