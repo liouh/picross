@@ -1,9 +1,16 @@
 Picross
 =======
 
-This is a playable [picross puzzle](http://en.wikipedia.org/wiki/Nonogram) generator I wrote in JavaScript
+This is a playable [picross puzzle](http://en.wikipedia.org/wiki/Nonogram) generator written in JavaScript
 
 You can access [an online version here](http://liouh.com/picross/)
+
+### Instructions
+
+* Left click : mark cell as active
+* Left click + drag : mark multiple cells as active
+* Right click : mark cell as inactive
+* Right click + drag : mark multiple cells as inactive
 
 ### Features
 
@@ -12,13 +19,6 @@ You can access [an online version here](http://liouh.com/picross/)
 * Option to toggle crossouts, helping you track numbers that have already been solved
 * Progress indicator
 * Mistakes counter
-
-### Instructions
-
-* Left click : mark cell as active
-* Left click & drag : mark multiple cells as active
-* Right click : mark cell as inactive
-* Right click & drag : mark multiple cells as inactive
 
 ### Library Dependencies
 
