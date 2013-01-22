@@ -112,7 +112,7 @@ $(function() {
 				var streak = 0;
 				hintsX[i] = [];
 				for(var j = 0; j < this.get('dimensionWidth'); j++) {
-					if(solution[i][j] == 1) {
+					if(solution[i][j] === 1) {
 						if(streak > 0) {
 							hintsX[i].push(streak);
 						}
@@ -131,7 +131,7 @@ $(function() {
 				var streak = 0;
 				hintsY[j] = [];
 				for(var i = 0; i < this.get('dimensionHeight'); i++) {
-					if(solution[i][j] == 1) {
+					if(solution[i][j] === 1) {
 						if(streak > 0) {
 							hintsY[j].push(streak);
 						}
@@ -173,24 +173,24 @@ $(function() {
 				return;
 			}
 			
-			if(solution == guess) {
+			if(solution === guess) {
 				state[x][y] = guess;
 			} else {
 				state[x][y] = solution * -1;
 				mistakes++;
 			}
 			
-			if(solution == 2) {
+			if(solution === 2) {
 				guessed++;
 			}
 			
 			// cross out x -- left
 			var tracker = 0;
 			for(var i = 0; i < hintsX[x].length; i++) {
-				while(Math.abs(state[x][tracker]) == 1) {
+				while(Math.abs(state[x][tracker]) === 1) {
 					tracker++;
 				}
-				if(state[x][tracker] == 0) {
+				if(state[x][tracker] === 0) {
 					break;
 				}
 				var streak = hintsX[x][i];
@@ -199,9 +199,9 @@ $(function() {
 					continue;
 				}
 				for(var j = 1; j <= streak; j++) {
-					if(Math.abs(state[x][tracker]) == 2) {
+					if(Math.abs(state[x][tracker]) === 2) {
 						tracker++;
-						if(j == streak && (tracker == state[0].length || Math.abs(state[x][tracker]) == 1)) {
+						if(j === streak && (tracker === state[0].length || Math.abs(state[x][tracker]) === 1)) {
 							hintsX[x][i] = streak * -1;
 						}
 					} else {
@@ -212,10 +212,10 @@ $(function() {
 			// cross out x -- right
 			tracker = state[0].length - 1;
 			for(var i = hintsX[x].length - 1; i >= 0; i--) {
-				while(Math.abs(state[x][tracker]) == 1) {
+				while(Math.abs(state[x][tracker]) === 1) {
 					tracker--;
 				}
-				if(state[x][tracker] == 0) {
+				if(state[x][tracker] === 0) {
 					break;
 				}
 				var streak = hintsX[x][i];
@@ -224,9 +224,9 @@ $(function() {
 					continue;
 				}
 				for(var j = 1; j <= streak; j++) {
-					if(Math.abs(state[x][tracker]) == 2) {
+					if(Math.abs(state[x][tracker]) === 2) {
 						tracker--;
-						if(j == streak && (tracker == -1 || Math.abs(state[x][tracker]) == 1)) {
+						if(j === streak && (tracker === -1 || Math.abs(state[x][tracker]) === 1)) {
 							hintsX[x][i] = streak * -1;
 						}
 					} else {
@@ -237,10 +237,10 @@ $(function() {
 			// cross out y -- top
 			tracker = 0;
 			for(var i = 0; i < hintsY[y].length; i++) {
-				while(Math.abs(state[tracker][y]) == 1) {
+				while(Math.abs(state[tracker][y]) === 1) {
 					tracker++;
 				}
-				if(state[tracker][y] == 0) {
+				if(state[tracker][y] === 0) {
 					break;
 				}
 				var streak = hintsY[y][i];
@@ -249,9 +249,9 @@ $(function() {
 					continue;
 				}
 				for(var j = 1; j <= streak; j++) {
-					if(Math.abs(state[tracker][y]) == 2) {
+					if(Math.abs(state[tracker][y]) === 2) {
 						tracker++;
-						if(j == streak && (tracker == state.length || Math.abs(state[tracker][y]) == 1)) {
+						if(j === streak && (tracker === state.length || Math.abs(state[tracker][y]) === 1)) {
 							hintsY[y][i] = streak * -1;
 						}
 					} else {
@@ -262,10 +262,10 @@ $(function() {
 			// cross out y -- bottom
 			tracker = state.length - 1;
 			for(var i = hintsY[y].length - 1; i >= 0; i--) {
-				while(Math.abs(state[tracker][y]) == 1) {
+				while(Math.abs(state[tracker][y]) === 1) {
 					tracker--;
 				}
-				if(state[tracker][y] == 0) {
+				if(state[tracker][y] === 0) {
 					break;
 				}
 				var streak = hintsY[y][i];
@@ -274,9 +274,9 @@ $(function() {
 					continue;
 				}
 				for(var j = 1; j <= streak; j++) {
-					if(Math.abs(state[tracker][y]) == 2) {
+					if(Math.abs(state[tracker][y]) === 2) {
 						tracker--;
-						if(j == streak && (tracker == -1 || Math.abs(state[tracker][y]) == 1)) {
+						if(j === streak && (tracker === -1 || Math.abs(state[tracker][y]) === 1)) {
 							hintsY[y][i] = streak * -1;
 						}
 					} else {
@@ -349,6 +349,7 @@ $(function() {
 		
 		_newGame: function(customSeed) {
 			$('#puzzle').removeClass('complete');
+			$('#puzzle').removeClass('perfect');
 			$('#progress').removeClass('done');
 			$('#mistakes').removeClass('error');
 			this.changeDimensions();
@@ -417,7 +418,7 @@ $(function() {
 			$('td.hover').removeClass('hover');
 			$('td.hoverLight').removeClass('hoverLight');
 			
-			if(this.mouseMode == 0) {
+			if(this.mouseMode === 0) {
 				$('td.cell[data-y=' + endY + ']').addClass('hoverLight');
 				$('td.cell[data-x=' + endX + ']').addClass('hoverLight');
 				$('td.cell[data-x=' + endX + '][data-y=' + endY + ']').addClass('hover');
@@ -427,7 +428,7 @@ $(function() {
 			var startX = this.mouseStartX;
 			var startY = this.mouseStartY;
 			
-			if(startX == -1 || startY == -1) {
+			if(startX === -1 || startY === -1) {
 				return;
 			}
 			
@@ -452,7 +453,7 @@ $(function() {
 		},
 		
 		mouseOut: function(e) {
-			if(this.mouseMode == 0) {
+			if(this.mouseMode === 0) {
 				$('td.hover').removeClass('hover');
 				$('td.hoverLight').removeClass('hoverLight');
 			}
@@ -501,7 +502,7 @@ $(function() {
 			var startX = this.mouseStartX;
 			var startY = this.mouseStartY;
 			
-			if(startX == -1 || startY == -1) {
+			if(startX === -1 || startY === -1) {
 				return;
 			}
 			
@@ -527,7 +528,7 @@ $(function() {
 			var guessed = this.model.get('guessed');
 			var total = this.model.get('total');
 			
-			if(guessed == total) {
+			if(guessed === total) {
 				var hintsX = this.model.get('hintsX');
 				var hintsY = this.model.get('hintsY');
 				
@@ -563,6 +564,9 @@ $(function() {
 			if(this.model.get('complete')) {
 				$('#puzzle').addClass('complete');
 				$('#progress').addClass('done');
+				if(mistakes === 0) {
+					$('#puzzle').addClass('perfect');
+				}
 			}
 			
 			var state = this.model.get('state');

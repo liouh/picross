@@ -228,3 +228,17 @@ h1 {
 	background-color: #333;
 	box-shadow: 3px 3px 5px #666 inset, -3px -3px 5px #000 inset;
 }
+
+#puzzle.complete.perfect {
+	background-image: url(../images/rainbow.gif);
+}
+
+#puzzle.complete.perfect td {
+	background-color: #fafafa;
+}
+
+#puzzle.complete.perfect td.cell.s2 {
+	background-color: transparent;
+	box-shadow: 1px 1px 5px white inset, -1px -1px 5px #666 inset;
+}
+
