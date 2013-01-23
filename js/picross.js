@@ -301,17 +301,32 @@ $(function() {
 		
 		el: $("body"),
 		
-		events: {
-			"click #new": "newGame",
-			"change #easy": "changeEasyMode",
-			"mousedown": "clickStart",
-			"mouseover td.cell": "mouseOver",
-			"mouseout td.cell": "mouseOut",
-			"mouseup": "clickEnd",
-			"submit #customForm": "newCustom",
-			"click #seed": function(e) { e.currentTarget.select(); },
-			"click #customSeed": function(e) { e.currentTarget.select(); },
-			"contextmenu": function(e) { e.preventDefault(); }
+		events: function() {
+			if('ontouchstart' in document.documentElement) {
+				return {
+					"click #new": "newGame",
+					"change #easy": "changeEasyMode",
+					"touchstart td.cell": "touchStart",
+					"touchmove td.cell": "touchMove",
+					"touchend td.cell": "touchEnd",
+					"submit #customForm": "newCustom",
+					"click #seed": function(e) { e.currentTarget.select(); },
+					"click #customSeed": function(e) { e.currentTarget.select(); }
+				}
+			} else {
+				return {
+					"click #new": "newGame",
+					"change #easy": "changeEasyMode",
+					"mousedown": "clickStart",
+					"mouseover td.cell": "mouseOver",
+					"mouseout td.cell": "mouseOut",
+					"mouseup": "clickEnd",
+					"submit #customForm": "newCustom",
+					"click #seed": function(e) { e.currentTarget.select(); },
+					"click #customSeed": function(e) { e.currentTarget.select(); },
+					"contextmenu": function(e) { e.preventDefault(); }
+				}
+			}
 		},
 		
 		mouseStartX: -1,
@@ -520,6 +535,44 @@ $(function() {
 			}
 		},
 		
+		touchStart: function(e) {
+			if(this.model.get('complete')) {
+				return;
+			}
+			var target = $(e.target);
+			this.mouseStartX = this.mouseEndX = e.originalEvent.touches[0].pageX;
+			this.mouseStartY = this.mouseEndY = e.originalEvent.touches[0].pageY;
+			var that = this;
+			this.mouseMode = setTimeout(function() {
+				that.model.guess(target.attr('data-x'), target.attr('data-y'), 1);
+				that.render();
+			}, 750);
+		},
+
+		touchMove: function(e) {
+			if(this.model.get('complete')) {
+				return;
+			}
+			this.mouseEndX = e.originalEvent.touches[0].pageX;
+			this.mouseEndY = e.originalEvent.touches[0].pageY;
+			if(Math.abs(this.mouseEndX - this.mouseStartX) >= 10 || Math.abs(this.mouseEndY - this.mouseStartY) >= 10) {
+				clearTimeout(this.mouseMode);
+			}
+		},
+
+		touchEnd: function(e) {
+			if(this.model.get('complete')) {
+				return;
+			}
+			clearTimeout(this.mouseMode);
+			var target = $(e.target);
+			if(Math.abs(this.mouseEndX - this.mouseStartX) < 10 && Math.abs(this.mouseEndY - this.mouseStartY) < 10) {
+				this.model.guess(target.attr('data-x'), target.attr('data-y'), 2);
+				this.checkCompletion();
+				this.render();
+			}
+		},
+
 		checkCompletion: function() {
 			if(this.model.get('complete')) {
 				return;
