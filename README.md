@@ -12,6 +12,11 @@ You can access [an online version here](http://liouh.com/picross/)
 * Right click : mark cell as inactive
 * Right click + drag : mark multiple cells as inactive
 
+On touch capable devices:
+
+* Tap: mark cell as active
+* Tap and hold: mark cell as inactive
+
 ### Features
 
 * Adjustable grid dimensions (the code is generic and supports any dimension, but a 30x30 game can take up to 2 hours)
