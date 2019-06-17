@@ -176,9 +176,13 @@ $(function() {
 				guessed--;
 			}
 
-			state[x][y] = guess;
-			if(guess === 2) {
-				guessed++;
+			if(state[x][y] === guess) {
+				state[x][y] = 0;
+			} else {
+				state[x][y] = guess;
+				if(guess === 2) {
+					guessed++;
+				}
 			}
 
 			this.set({
@@ -224,9 +228,9 @@ $(function() {
 			if(cellIndex < state[x].length || hintIndex < hintsX[x].length) {
 				filled = false;
 			}
-			hintsX[x].forEach((value, index) => {
-				hintsX[x][index] = Math.abs(value) * (filled ? -1 : 1);
-			});
+			for(var i = 0; i < hintsX[x].length; i++) {
+				hintsX[x][i] = Math.abs(hintsX[x][i]) * (filled ? -1 : 1);
+			}
 
 			// cross out column hints
 			filled = true;
@@ -259,9 +263,9 @@ $(function() {
 			if(cellIndex < state.length || hintIndex < hintsY[y].length) {
 				filled = false;
 			}
-			hintsY[y].forEach((value, index) => {
-				hintsY[y][index] = Math.abs(value) * (filled ? -1 : 1);
-			});
+			for(var i = 0; i < hintsY[y].length; i++) {
+				hintsY[y][i] = Math.abs(hintsY[y][i]) * (filled ? -1 : 1);
+			}
 
 			this.set({
 				hintsX: hintsX,
@@ -567,6 +571,10 @@ $(function() {
 			var solutionY = this.model.getHintsY(state);
 
 			for(var i = 0; i < hintsX.length; i++) {
+				if(hintsX[i].length !== solutionX[i].length) {
+					perfect = false;
+					break;
+				}
 				for(var j = 0; j < hintsX[i].length; j++) {
 					if(Math.abs(hintsX[i][j]) !== solutionX[i][j]) {
 						perfect = false;
@@ -576,6 +584,10 @@ $(function() {
 			}
 
 			for(var i = 0; i < hintsY.length; i++) {
+				if(hintsY[i].length !== solutionY[i].length) {
+					perfect = false;
+					break;
+				}
 				for(var j = 0; j < hintsY[i].length; j++) {
 					if(Math.abs(hintsY[i][j]) !== solutionY[i][j]) {
 						perfect = false;
