@@ -115,6 +115,12 @@ h1 {
 	padding: 5px 10px;
 }
 
+#solve {
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px;
+}
+
 #seed {
 	background-color: #efefef;
 }
@@ -127,16 +133,6 @@ h1 {
 
 #progress.done {
 	color: #080;
-}
-
-#mistakes {
-	font-size: 20px;
-	font-weight: bold;
-	color: #999;
-}
-
-#mistakes.error {
-	color: #A00;
 }
 
 #puzzle {
@@ -176,6 +172,16 @@ h1 {
 	text-decoration: line-through;
 }
 
+#puzzle td.key.left em, #puzzle td.key.left strong {
+	margin-right: 5px;
+	padding: 0 1px;
+}
+
+#puzzle.complete td.key strong {
+	background-color: #c00;
+	color: #fff;
+}
+
 #puzzle td.key.top {
 	text-align: center;
 	vertical-align: bottom;
@@ -186,7 +192,7 @@ h1 {
 #puzzle td.key.left {
 	text-align: right;
 	vertical-align: middle;
-	padding-right: 10px;
+	padding-right: 3px;
 }
 
 #puzzle td.cell {
@@ -241,4 +247,3 @@ h1 {
 	background-color: transparent;
 	box-shadow: 1px 1px 5px white inset, -1px -1px 5px #666 inset;
 }
-
