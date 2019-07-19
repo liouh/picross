@@ -702,3 +702,24 @@ function localStorageSupport() {
 		return false;
 	}
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+	const checkbox = document.querySelector('.dark-mode-checkbox');
+
+	checkbox.checked = localStorage.getItem('darkMode') === 'true';
+
+	changeDarkMode(checkbox.checked)
+
+	checkbox.addEventListener('change', function (event) {
+	  localStorage.setItem('darkMode', event.currentTarget.checked);
+	  changeDarkMode(event.currentTarget.checked)
+	});
+
+	function changeDarkMode(enabled) {
+		enabled ? 
+			document.querySelector('body').classList.add('dark')
+		:
+			document.querySelector('body').classList.remove('dark')
+		
+	}
+  });

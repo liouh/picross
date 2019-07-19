@@ -1,3 +1,44 @@
+:root {
+	/* Light mode colors */
+	--c-light-text: #121212;
+	--c-light-background: #fff;
+	--c-light-border: #555;
+	--c-light-link: #333;
+	--c-light-footer-text: #999;
+	--c-light-cell-background: #fff;
+	--c-light-cell-highlight: #F7F2E0;
+  
+	/* Dark mode colors */
+	--c-dark-text: #fff;
+	--c-dark-background: #404040;
+	--c-dark-border: #fff;
+	--c-dark-link: #999999;
+	--c-dark-footer-text: #fff;
+	--c-dark-cell-background: #666;
+	--c-dark-cell-highlight: #aca99c;
+}
+  
+/* Set default theme to light theme */
+:root {
+	--c-text: var(--c-light-text);
+	--c-background: var(--c-light-background);
+	--c-border: var(--c-light-border);
+	--c-link: var(--c-light-link);
+	--c-footer-text: var(--c-light-footer-text);
+	--c-cell-background: var(--c-light-cell-background);
+	--c-cell-highlight: var(--c-light-cell-highlight);
+}
+
+.dark {
+	--c-text: var(--c-dark-text);
+	--c-background: var(--c-dark-background);
+	--c-border: var(--c-dark-border);
+	--c-link: var(--c-dark-link);
+	--c-footer-text: var(--c-dark-footer-text);
+	--c-cell-background: var(--c-dark-cell-background);
+	--c-cell-highlight: var(--c-dark-cell-highlight);
+}
+
 html {
 	height: 100%;
 }
@@ -5,8 +46,9 @@ html {
 body {
 	font-family: Helvetica, Arial, Sans-serif;
 	font-size: 13px;
-	background-color: #fafafa;
+	background-color: var(--c-background);
 	height: 100%;
+	color: var(--c-text);
 }
 
 table, tr, td {
@@ -17,7 +59,7 @@ table, tr, td {
 
 a {
 	text-decoration: none;
-	color: #333;
+	color: var(--c-link);
 }
 
 a:hover {
@@ -38,7 +80,7 @@ a:hover {
 	border-top: 1px dashed #ccc;
 	padding: 15px 0 20px;
 	text-align: center;
-	color: #999;
+	color: var(--c-footer-text);
 	font-size: 12px;
 	line-height: 1.5;
 }
@@ -57,18 +99,18 @@ h1 {
 }
 
 .control-group {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid var(--c-background);
 	margin-bottom: 20px;
 	padding: 15px 12px;
-	color: #333;
-	background-color: #fff;
+	background-color: var(--c-background);
+	color: var(--c-text);
 	border-radius: 5px;
 	box-shadow: inset 0px 1px 3px #999;
 	text-align: center;
 }
 
 .control-group h3 {
-	color: black;
+	color: var(--c-text);
 	font-size: 15px;
 	font-weight: bold;
 	margin-bottom: 10px;
@@ -98,7 +140,7 @@ h1 {
 }
 
 .custom h5 {
-	color: #666;
+	color: var(--c-text);
 	font-size: 11px;
 }
 
@@ -147,19 +189,19 @@ h1 {
 }
 
 #puzzle td:nth-child(5n + 1) {
-	border-right: 1px solid #555;
+	border-right: 1px solid var(--c-border);
 }
 
 #puzzle td.cell:nth-child(5n + 1) {
-	border-right: 1px solid #555;
+	border-right: 1px solid var(--c-border);
 }
 
 #puzzle tr:nth-child(5n + 1) td {
-	border-bottom: 1px solid #555;
+	border-bottom: 1px solid var(--c-border);
 }
 
 #puzzle tr:nth-child(5n + 2) td {
-	border-top: 1px solid #555;
+	border-top: 1px solid var(--c-border);
 }
 
 #puzzle td.key {
@@ -197,14 +239,14 @@ h1 {
 
 #puzzle td.cell {
 	border: 1px solid #ccc;
-	background-color: #fff;
+	background-color: var(--c-cell-background);
 	color: #A00;
 	text-align: center;
 	vertical-align: middle;
 }
 
 #puzzle td.cell.hoverLight {
-	background-color: #F7F2E0;
+	background-color: var(--c-cell-highlight);
 }
 
 #puzzle td.cell.hover {
