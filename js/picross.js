@@ -706,13 +706,15 @@ function localStorageSupport() {
 document.addEventListener('DOMContentLoaded', function () {
 	const checkbox = document.querySelector('.dark-mode-checkbox');
 
-	checkbox.checked = localStorage.getItem('darkMode') === 'true';
+	if (localStorageSupport())
+		checkbox.checked = JSON.parse(localStorage['darkMode']) === true;
 
 	changeDarkMode(checkbox.checked)
 
 	checkbox.addEventListener('change', function (event) {
-	  localStorage.setItem('darkMode', event.currentTarget.checked);
-	  changeDarkMode(event.currentTarget.checked)
+		if (localStorageSupport())
+			localStorage['darkMode'] = JSON.stringify(event.currentTarget.checked);
+		changeDarkMode(event.currentTarget.checked)
 	});
 
 	function changeDarkMode(enabled) {
