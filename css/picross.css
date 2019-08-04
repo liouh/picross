@@ -3,10 +3,21 @@ html {
 }
 
 body {
+	background-color: #fafafa;
 	font-family: Helvetica, Arial, Sans-serif;
 	font-size: 13px;
-	background-color: #fafafa;
 	height: 100%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body.dark {
+	background-color: #222;
+	color: #ddd;
 }
 
 table, tr, td {
@@ -18,6 +29,10 @@ table, tr, td {
 a {
 	text-decoration: none;
 	color: #333;
+}
+
+body.dark a {
+	color: #fff;
 }
 
 a:hover {
@@ -52,26 +67,37 @@ h1 {
 
 .controls {
 	float: left;
-	width: 150px;
 	height: 680px;
+	width: 150px;
 }
 
 .control-group {
-	border-bottom: 2px solid #fff;
-	margin-bottom: 20px;
-	padding: 15px 12px;
-	color: #333;
 	background-color: #fff;
+	border-bottom: 2px solid #fff;
 	border-radius: 5px;
 	box-shadow: inset 0px 1px 3px #999;
+	color: #333;
+	margin-bottom: 20px;
+	padding: 15px 12px;
 	text-align: center;
 }
 
+body.dark .control-group {
+	background-color: #333;
+	border-bottom: 2px solid #000;
+	box-shadow: none;
+	color: #999;
+}
+
 .control-group h3 {
-	color: black;
+	color: #000;
 	font-size: 15px;
 	font-weight: bold;
 	margin-bottom: 10px;
+}
+
+body.dark .control-group h3 {
+	color: #ddd;
 }
 
 .control-group .control-section {
@@ -92,8 +118,8 @@ h1 {
 }
 
 .custom {
-	margin-top: 15px;
 	border-top: 1px dashed #ccc;
+	margin-top: 15px;
 	padding-top: 15px;
 }
 
@@ -102,12 +128,16 @@ h1 {
 	font-size: 11px;
 }
 
+body.dark .custom h5 {
+	color: #999;
+}
+
 .custom input[type=text] {
-	width: 100px;
-	margin-bottom: 10px;
 	border: 1px solid #ddd;
+	margin-bottom: 10px;
 	padding: 2px;
 	text-align: center;
+	width: 100px;
 }
 
 #new {
@@ -126,9 +156,9 @@ h1 {
 }
 
 #progress {
+	color: #999;
 	font-size: 20px;
 	font-weight: bold;
-	color: #999;
 }
 
 #progress.done {
@@ -138,12 +168,14 @@ h1 {
 #puzzle {
 	float: right;
 	width: 600px;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+}
+
+#puzzle td {
+	background-color: #fafafa;
+}
+
+body.dark #puzzle td.key {
+	background-color: #222;
 }
 
 #puzzle td:nth-child(5n + 1) {
@@ -163,13 +195,17 @@ h1 {
 }
 
 #puzzle td.key {
-	font-weight: bold;
 	font-family: Monospace;
+	font-weight: bold;
 }
 
 #puzzle td.key em {
 	color: #ccc;
 	text-decoration: line-through;
+}
+
+body.dark #puzzle td.key em {
+	color: #666;
 }
 
 #puzzle td.key.left em, #puzzle td.key.left strong {
@@ -183,21 +219,21 @@ h1 {
 }
 
 #puzzle td.key.top {
+	line-height: 1.3;
+	padding-bottom: 5px;
 	text-align: center;
 	vertical-align: bottom;
-	padding-bottom: 5px;
-	line-height: 1.3;
 }
 
 #puzzle td.key.left {
+	padding-right: 3px;
 	text-align: right;
 	vertical-align: middle;
-	padding-right: 3px;
 }
 
 #puzzle td.cell {
-	border: 1px solid #ccc;
 	background-color: #fff;
+	border: 1px solid #ccc;
 	color: #A00;
 	text-align: center;
 	vertical-align: middle;
@@ -245,5 +281,5 @@ h1 {
 
 #puzzle.complete.perfect td.cell.s2 {
 	background-color: transparent;
-	box-shadow: 1px 1px 5px white inset, -1px -1px 5px #666 inset;
+	box-shadow: 1px 1px 5px #fff inset, -1px -1px 5px #666 inset;
 }

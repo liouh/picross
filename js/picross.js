@@ -1,7 +1,7 @@
 $(function() {
 
 	// localStorage save format versioning
-	var saveVersion = '2019.06.16';
+	var saveVersion = '2019.08.03';
 
 	var touchSupport = true;
 
@@ -19,6 +19,7 @@ $(function() {
 				complete: false,
 				perfect: false,
 				seed: 0,
+				darkMode: false,
 				easyMode: true	// show crossouts
 			};
 		},
@@ -41,6 +42,7 @@ $(function() {
 				localStorage['picross2.complete'] = JSON.stringify(this.get('complete'));
 				localStorage['picross2.perfect'] = JSON.stringify(this.get('perfect'));
 				localStorage['picross2.seed'] = JSON.stringify(this.get('seed'));
+				localStorage['picross2.darkMode'] = JSON.stringify(this.get('darkMode'));
 				localStorage['picross2.easyMode'] = JSON.stringify(this.get('easyMode'));
 			}
 		},
@@ -62,6 +64,7 @@ $(function() {
 			var complete = JSON.parse(localStorage['picross2.complete']);
 			var perfect = JSON.parse(localStorage['picross2.perfect']);
 			var seed = JSON.parse(localStorage['picross2.seed']);
+			var darkMode = JSON.parse(localStorage['picross2.darkMode']);
 			var easyMode = JSON.parse(localStorage['picross2.easyMode']);
 
 			this.set({
@@ -75,6 +78,7 @@ $(function() {
 				complete: complete,
 				perfect: perfect,
 				seed: seed,
+				darkMode: darkMode,
 				easyMode: easyMode
 			});
 		},
@@ -285,6 +289,7 @@ $(function() {
 				return {
 					"click #new": "newGame",
 					"click #solve": "solve",
+					"change #dark": "changeDarkMode",
 					"change #easy": "changeEasyMode",
 					"mousedown": "clickStart",
 					"mouseover td.cell": "mouseOver",
@@ -302,6 +307,7 @@ $(function() {
 				return {
 					"click #new": "newGame",
 					"click #solve": "solve",
+					"change #dark": "changeDarkMode",
 					"change #easy": "changeEasyMode",
 					"mousedown": "clickStart",
 					"mouseover td.cell": "mouseOver",
@@ -324,6 +330,11 @@ $(function() {
 		initialize: function() {
 			this.model.resume();
 			$('#dimensions').val(this.model.get('dimensionWidth') + 'x' + this.model.get('dimensionHeight'));
+			if(this.model.get('darkMode')) {
+				$('#dark').attr('checked', 'checked');
+			} else {
+				$('#dark').removeAttr('checked');
+			}
 			if(this.model.get('easyMode')) {
 				$('#easy').attr('checked', 'checked');
 			} else {
@@ -331,6 +342,12 @@ $(function() {
 			}
 			this.render();
 			this.showSeed();
+		},
+
+		changeDarkMode: function(e) {
+			var darkMode = $('#dark').attr('checked') !== undefined;
+			this.model.set({darkMode: darkMode});
+			this.render();
 		},
 
 		changeEasyMode: function(e) {
@@ -610,6 +627,12 @@ $(function() {
 			var progress = this.model.get('guessed') / this.model.get('total') * 100;
 			$('#progress').text(progress.toFixed(1) + '%');
 
+			if(this.model.get('darkMode')) {
+				$('body').addClass('dark');
+			} else {
+				$('body').removeClass('dark');
+			}
+
 			if(this.model.get('complete')) {
 				$('#solve').prop('disabled', true);
 				$('#puzzle').addClass('complete');
@@ -650,19 +673,19 @@ $(function() {
 				for(var i = 0; i < hintsX.length; i++) {
 					hintsXText[i] = [];
 					for(var j = 0; j < hintsX[i].length; j++) {
-						hintsXText[i][j] = Math.abs(hintsX[i][j]);
+						hintsXText[i][j] = '<strong>' + Math.abs(hintsX[i][j]) + '</strong>';
 					}
 				}
 				for(var i = 0; i < hintsY.length; i++) {
 					hintsYText[i] = [];
 					for(var j = 0; j < hintsY[i].length; j++) {
-						hintsYText[i][j] = Math.abs(hintsY[i][j]);
+						hintsYText[i][j] = '<strong>' + Math.abs(hintsY[i][j]) + '</strong>';
 					}
 				}
 			}
 
 			var html = '<table>';
-			html += '<tr><td></td>';
+			html += '<tr><td class="key"></td>';
 			for(var i = 0; i < state[0].length; i++) {
 				html += '<td class="key top">' + hintsYText[i].join('<br/>') + '</td>';
 			}
@@ -670,11 +693,7 @@ $(function() {
 			for(var i = 0; i < state.length; i++) {
 				html += '<tr><td class="key left">' + hintsXText[i].join('') + '</td>';
 				for(var j = 0; j < state[0].length; j++) {
-					html += '<td class="cell s' + Math.abs(state[i][j]) + '" data-x="' + i + '" data-y="' + j + '">';
-					if(state[i][j] < 0) {
-						html += 'X'; //&#9785;
-					}
-					html += '</td>';
+					html += '<td class="cell s' + Math.abs(state[i][j]) + '" data-x="' + i + '" data-y="' + j + '"></td>';
 				}
 				html += '</tr>';
 			}
