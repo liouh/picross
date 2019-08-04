@@ -101,7 +101,8 @@ body.dark .control-group h3 {
 }
 
 .control-group .control-section {
-	padding: 3px 0 7px;
+	padding: 3px 0 7px 3px;
+	text-align: left;
 }
 
 .control-group input[type=checkbox] {
