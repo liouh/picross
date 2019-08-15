@@ -183,16 +183,32 @@ body.dark #puzzle td.key {
 	border-right: 1px solid #555;
 }
 
+body.dark #puzzle td:nth-child(5n + 1) {
+	border-right-color: #888;
+}
+
 #puzzle td.cell:nth-child(5n + 1) {
 	border-right: 1px solid #555;
+}
+
+body.dark #puzzle td.cell:nth-child(5n + 1) {
+	border-right-color: #888;
 }
 
 #puzzle tr:nth-child(5n + 1) td {
 	border-bottom: 1px solid #555;
 }
 
+body.dark #puzzle tr:nth-child(5n + 1) td {
+	border-bottom-color: #888;
+}
+
 #puzzle tr:nth-child(5n + 2) td {
 	border-top: 1px solid #555;
+}
+
+body.dark #puzzle tr:nth-child(5n + 2) td {
+	border-top-color: #888;
 }
 
 #puzzle td.key {
@@ -241,11 +257,21 @@ body.dark #puzzle td.key em {
 	vertical-align: middle;
 }
 
+body.dark #puzzle td.cell {
+	background-color: #333;
+	border-color: #555;
+}
+
 #puzzle td.cell.hoverLight {
 	background-color: #F7F2E0;
 }
 
-#puzzle td.cell.hover {
+body.dark #puzzle td.cell.hoverLight {
+	background-color: #444;
+}
+
+#puzzle td.cell.hover,
+body.dark #puzzle td.cell.hover {
 	background-color: #F7D358;
 }
 
@@ -254,12 +280,19 @@ body.dark #puzzle td.key em {
 	box-shadow: 0 0 5px 2px #ccc inset;
 }
 
-#puzzle td.cell.s2 {
+body.dark #puzzle td.cell.s1 {
+	background-color: #777;
+	box-shadow: 0 0 5px 2px #666 inset;
+}
+
+#puzzle td.cell.s2,
+body.dark #puzzle td.cell.s2 {
 	background-color: #81DAF5;
 	box-shadow: 0 0 5px 2px #01A9DB inset;
 }
 
-#puzzle td.cell.hover {
+#puzzle td.cell.hover,
+body.dark #puzzle td.cell.hover {
 	box-shadow: 0 0 5px 2px #FF8000 inset;
 }
 
@@ -284,4 +317,9 @@ body.dark #puzzle td.key em {
 #puzzle.complete.perfect td.cell.s2 {
 	background-color: transparent;
 	box-shadow: 1px 1px 5px #fff inset, -1px -1px 5px #666 inset;
+}
+
+body.dark #puzzle.complete.perfect td.cell.s2 {
+	background-color: transparent;
+	box-shadow: none;
 }
