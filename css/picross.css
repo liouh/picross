@@ -49,7 +49,7 @@ a:hover {
 .footer {
 	clear: both;
 	width: 800px;
-	margin: 0 auto;
+	margin: 50px auto 0;
 	border-top: 1px dashed #ccc;
 	padding: 15px 0 20px;
 	text-align: center;
@@ -67,7 +67,6 @@ h1 {
 
 .controls {
 	float: left;
-	height: 680px;
 	width: 150px;
 }
 
@@ -241,8 +240,12 @@ body.dark #puzzle td.key em {
 	vertical-align: middle;
 }
 
-#puzzle td.cell.hoverLight {
+#puzzle td.cell.hoverLight, #puzzle td.key.hoverLight {
 	background-color: #F7F2E0;
+}
+
+body.dark #puzzle td.key.hoverLight {
+	background-color: #333;
 }
 
 #puzzle td.cell.hover {
