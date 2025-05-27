@@ -170,6 +170,10 @@ body.dark .custom h5 {
 	width: 600px;
 }
 
+#puzzle table {
+	width: 100%;
+}
+
 #puzzle td {
 	background-color: #fafafa;
 }

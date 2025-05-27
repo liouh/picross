@@ -196,6 +196,9 @@ $(function() {
 			});
 
 			this.updateCrossouts(state, x, y);
+
+			// trigger the change event manually since in-place array updates aren't considered changes
+			this.trigger('change');
 		},
 
 		updateCrossouts: function(state, x, y) {
@@ -364,6 +367,7 @@ $(function() {
 		mouseMode: 0,
 
 		initialize: function() {
+			this.model.on('change', this.render, this);
 			this.model.resume();
 			$('#dimensions').val(this.model.get('dimensionWidth') + 'x' + this.model.get('dimensionHeight'));
 			if(this.model.get('darkMode')) {
@@ -377,19 +381,16 @@ $(function() {
 				$('#easy').removeAttr('checked');
 			}
 			this.render();
-			this.showSeed();
 		},
 
 		changeDarkMode: function(e) {
 			var darkMode = $('#dark').attr('checked') !== undefined;
 			this.model.set({darkMode: darkMode});
-			this.render();
 		},
 
 		changeEasyMode: function(e) {
 			var easyMode = $('#easy').attr('checked') !== undefined;
 			this.model.set({easyMode: easyMode});
-			this.render();
 		},
 
 		changeDimensions: function(e) {
@@ -408,8 +409,6 @@ $(function() {
 			$('#progress').removeClass('done');
 			this.changeDimensions();
 			this.model.reset(customSeed);
-			this.render();
-			this.showSeed();
 		},
 
 		newGame: function(e) {
@@ -428,11 +427,6 @@ $(function() {
 			}
 		},
 
-		showSeed: function() {
-			var seed = this.model.get('seed');
-			$('#seed').val(seed);
-		},
-
 		clickStart: function(e) {
 			if(this.model.get('complete')) {
 				return;
@@ -442,7 +436,6 @@ $(function() {
 
 			if(this.mouseMode != 0 || target.attr('data-x') === undefined || target.attr('data-y') === undefined) {
 				this.mouseMode = 0;
-				this.render();
 				return;
 			}
 
@@ -555,7 +548,6 @@ $(function() {
 					break;
 			}
 			this.mouseMode = 0;
-			this.render();
 		},
 
 		clickArea: function(endX, endY, guess) {
@@ -590,7 +582,6 @@ $(function() {
 			var that = this;
 			this.mouseMode = setTimeout(function() {
 				that.model.guess(target.attr('data-x'), target.attr('data-y'), 1);
-				that.render();
 			}, 750);
 		},
 
@@ -613,7 +604,6 @@ $(function() {
 			var target = $(e.target);
 			if(Math.abs(this.mouseEndX - this.mouseStartX) < 10 && Math.abs(this.mouseEndY - this.mouseStartY) < 10) {
 				this.model.guess(target.attr('data-x'), target.attr('data-y'), 2);
-				this.render();
 			}
 		},
 
@@ -628,11 +618,12 @@ $(function() {
 				complete: true,
 				perfect: perfect,
 			});
-
-			this.render();
 		},
 
 		render: function() {
+			var seed = this.model.get('seed');
+			$('#seed').val(seed);
+
 			var guessed = this.model.get('guessed');
 			var total = this.model.get('total');
 			var progress = this.model.get('guessed') / this.model.get('total') * 100;
