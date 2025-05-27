@@ -404,10 +404,6 @@ $(function() {
 
 		_newGame: function(customSeed) {
 			this.changeDimensions();
-			$('#solve').prop('disabled', false);
-			$('#puzzle').removeClass('complete');
-			$('#puzzle').removeClass('perfect');
-			$('#progress').removeClass('done');
 			this.model.reset(customSeed);
 		},
 
@@ -645,6 +641,11 @@ $(function() {
 					$('#progress').addClass('done');
 					$('#puzzle').addClass('perfect');
 				}
+			} else {
+				$('#solve').prop('disabled', false);
+				$('#puzzle').removeClass('complete');
+				$('#puzzle').removeClass('perfect');
+				$('#progress').removeClass('done');
 			}
 
 			var state = this.model.get('state');
