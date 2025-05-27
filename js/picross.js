@@ -403,11 +403,11 @@ $(function() {
 		},
 
 		_newGame: function(customSeed) {
+			this.changeDimensions();
 			$('#solve').prop('disabled', false);
 			$('#puzzle').removeClass('complete');
 			$('#puzzle').removeClass('perfect');
 			$('#progress').removeClass('done');
-			this.changeDimensions();
 			this.model.reset(customSeed);
 		},
 
